@@ -24,6 +24,7 @@
                 <filtering>true</filtering>
                 <includes>
                     <include>**/*.properties</include>
+                    <include>**/*.xml</include>
                 </includes>
             </testResource>
         </testResources>
@@ -98,50 +99,26 @@
                                 </ports>
                             </run>
                         </image>
-                        <!--<image>-->
-                            <!--<name>odk/sync-endpoint</name>-->
-                            <!--<alias>sync</alias>-->
-
-                            <!--<run>-->
-                                <!--<env>-->
-                                    <!--<SPRING_PROFILES_ACTIVE>postgres</SPRING_PROFILES_ACTIVE>-->
-                                <!--</env>-->
-                                <!--<volumes>-->
-                                    <!--<bind>-->
-                                        <!--<volume>${project.basedir}/security.properties:/run/secrets/org.opendatakit.aggregate.security.properties</volume>-->
-                                        <!--<volume>${project.basedir}/jdbc.properties:/run/secrets/org.opendatakit.aggregate.jdbc.properties</volume>-->
-                                    <!--</bind>-->
-                                <!--</volumes>-->
-                                <!--<dependsOn>-->
-                                    <!--<container>db-bootstrap</container>-->
-                                    <!--<container>ldap-service</container>-->
-                                <!--</dependsOn>-->
-                            <!--</run>-->
-
-                            <!--&lt;!&ndash;<build>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<assembly>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<inline>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<dependencySets>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<dependencySet>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;<includes>&ndash;&gt;-->
-                                                    <!--&lt;!&ndash;<include>org.opendatakit:sync-endpoint-docker</include>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;</includes>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;<outputDirectory>.</outputDirectory>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;<outputFileNameMapping>sync-endpoint-war</outputFileNameMapping>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;</dependencySet>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;</dependencySets>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</inline>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</assembly>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</build>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<run>...</run>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<watch>...</watch>&ndash;&gt;-->
-                        <!--</image>-->
                     </images>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-integration-test-source-as-test-sources</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/it/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

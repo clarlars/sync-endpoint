@@ -13,7 +13,7 @@ import java.net.URI;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(org.junit.runners.JUnit4.class)
-public class TableAclServiceTest extends AbstractServiceTest {
+public class TableAclServiceTestIT extends AbstractServiceTest {
 
   protected URI resourceUri;
 

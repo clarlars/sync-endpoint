@@ -17,7 +17,7 @@
     <packaging>jar</packaging>
     <build>
         <sourceDirectory>${toplevel.directory}/src/main/java</sourceDirectory>
-        <testSourceDirectory>${toplevel.directory}/src/test/java</testSourceDirectory>
+        <testSourceDirectory>${toplevel.directory}/src/it/java</testSourceDirectory>
         <testResources>
             <testResource>
                 <directory>${toplevel.directory}/src/test/resources</directory>

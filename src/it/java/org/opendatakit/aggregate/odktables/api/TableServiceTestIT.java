@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(org.junit.runners.JUnit4.class)
-public class TableServiceTest extends AbstractServiceTest {
+public class TableServiceTestIT extends AbstractServiceTest {
   
   protected URI resourceUri;
 

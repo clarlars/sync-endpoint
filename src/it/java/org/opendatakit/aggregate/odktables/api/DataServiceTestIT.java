@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 @RunWith(org.junit.runners.JUnit4.class)
-public class DataServiceTest extends AbstractServiceTest {
+public class DataServiceTestIT extends AbstractServiceTest {
 
   protected URI resourceUri;
   

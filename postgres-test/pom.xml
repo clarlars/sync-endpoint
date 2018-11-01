@@ -99,6 +99,56 @@
                                 </ports>
                             </run>
                         </image>
+                        <image>
+                            <name>odk/sync-endpoint</name>
+                            <alias>sync</alias>
+
+                            <run>
+                                <env>
+                                    <SPRING_PROFILES_ACTIVE>postgres</SPRING_PROFILES_ACTIVE>
+                                </env>
+
+                                <ports>
+                                    <port>8080:8080</port>
+                                </ports>
+
+                                <wait>
+                                    <time>10000</time>
+                                </wait>
+
+                                <volumes>
+                                    <bind>
+                                        <volume>
+                                            ${project.basedir}/security.properties:/run/secrets/org.opendatakit.aggregate.security.properties
+                                        </volume>
+                                        <volume>
+                                            ${project.basedir}/jdbc.properties:/run/secrets/org.opendatakit.aggregate.jdbc.properties
+                                        </volume>
+                                    </bind>
+                                </volumes>
+                                <dependsOn>
+                                    <container>db-bootstrap</container>
+                                    <container>ldap-service</container>
+                                </dependsOn>
+                            </run>
+
+                            <build>
+                                <assembly>
+                                    <inline>
+                                        <dependencySets>
+                                            <dependencySet>
+                                                <includes>
+                                                    <include>org.opendatakit:sync-endpoint-docker</include>
+                                                </includes>
+                                                <outputDirectory>.</outputDirectory>
+                                                <outputFileNameMapping>sync-endpoint-war</outputFileNameMapping>
+                                            </dependencySet>
+                                        </dependencySets>
+                                    </inline>
+                                </assembly>
+                            </build>
+                            <watch></watch>
+                        </image>
                     </images>
                 </configuration>
             </plugin>

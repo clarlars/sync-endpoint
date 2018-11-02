@@ -71,7 +71,7 @@
                                            <fileMode>777</fileMode>
                                        </file>
                                    </files>
-                                   </inline>>
+                                   </inline>
                                     <targetDir>/tmp</targetDir>
                                     <mode>dir</mode>
                                 </assembly>

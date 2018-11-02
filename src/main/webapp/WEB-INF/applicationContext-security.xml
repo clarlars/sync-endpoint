@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
-	<beans:import resource="classpath:odk-security-settings.xml"/>
+	<!--beans:import resource="classpath:odk-security-settings.xml"/-->
 
 	<!--	Configure the access policy to the pages here	-->
 	<!--	You can do things like this: and hasAuthority('AUTH_LOCAL') -->

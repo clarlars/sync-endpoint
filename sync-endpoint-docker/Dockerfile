@@ -10,6 +10,7 @@ RUN chmod +x /tmp/init.sh && \
     rm /sync-endpoint-war.war
 
 EXPOSE 8080
+EXPOSE 8888
 EXPOSE 8443
 ENTRYPOINT ["/tmp/init.sh"]
 CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]

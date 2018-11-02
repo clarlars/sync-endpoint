@@ -130,6 +130,7 @@
                                 <ports>
                                     <port>8443:8443</port>
                                     <port>8080:8080</port>
+                                    <port>8888:8888</port>
                                 </ports>
 
                                 <wait>

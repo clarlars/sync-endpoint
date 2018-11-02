@@ -57,8 +57,25 @@
                 <configuration>
                     <images>
                         <image>
-                            <name>postgres:9.6</name>
+                            <name>odk/db-service</name>
                             <alias>db</alias>
+
+                            <build>
+                                <from>postgres:9.6</from>
+                               <assembly>
+                                   <name>SC</name>
+                                   <inline>
+                                   <files>
+                                       <file>
+                                           <source>${project.basedir}/postgres/create_db_and_user.sql</source>
+                                           <fileMode>777</fileMode>
+                                       </file>
+                                   </files>
+                                   </inline>>
+                                    <targetDir>/tmp</targetDir>
+                                    <mode>dir</mode>
+                                </assembly>
+                            </build>
 
                             <run>
                                 <env>
@@ -66,13 +83,15 @@
                                     <POSTGRES_PASSWORD>postgresPostgresPassword</POSTGRES_PASSWORD>
                                     <POSTGRES_DB>postgres</POSTGRES_DB>
                                 </env>
-
                                 <ports>
                                     <port>5432:5432</port>
                                 </ports>
 
                                 <wait>
-                                    <time>10000</time>
+                                    <time>5000</time>
+                                    <exec>
+                                        <postStart>psql -U postgres -f /tmp/create_db_and_user.sql</postStart>
+                                    </exec>
                                 </wait>
                             </run>
                         </image>
@@ -200,33 +219,6 @@
                         <id>verify</id>
                         <goals>
                             <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>5.2.1</version>
-
-                <configuration>
-                    <url>jdbc:postgresql://localhost:5432/postgres?autoDeserialize=true</url>
-                    <user>postgres</user>
-                    <password>postgresPostgresPassword</password>
-                    <initSql>
-                        CREATE USER odk WITH UNENCRYPTED PASSWORD 'odk';
-                        CREATE SCHEMA odk_sync AUTHORIZATION odk;
-                        GRANT ALL PRIVILEGES ON SCHEMA odk_sync TO odk;
-                    </initSql>
-                </configuration>
-
-                <executions>
-                    <execution>
-                        <id>init-db</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>baseline</goal>
                         </goals>
                     </execution>
                 </executions>

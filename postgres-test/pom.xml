@@ -20,11 +20,25 @@
         <testSourceDirectory>${toplevel.directory}/src/test/java</testSourceDirectory>
         <testResources>
             <testResource>
-                <directory>${toplevel.directory}/src/test/resources</directory>
+                <directory>${toplevel.directory}/src/it/resources</directory>
                 <filtering>true</filtering>
                 <includes>
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
+                </includes>
+            </testResource>
+            <testResource>
+                <directory>${toplevel.directory}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </testResource>
+            <testResource>
+                <directory>${project.basedir}/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
                 </includes>
             </testResource>
         </testResources>
@@ -57,7 +71,7 @@
                 <configuration>
                     <images>
                         <image>
-                            <name>odk/db-service</name>
+                            <name>odk/db</name>
                             <alias>db</alias>
 
                             <build>
@@ -129,7 +143,6 @@
 
                                 <ports>
                                     <port>8443:8443</port>
-                                    <port>8080:8080</port>
                                     <port>8888:8888</port>
                                 </ports>
 
@@ -140,10 +153,13 @@
                                 <volumes>
                                     <bind>
                                         <volume>
-                                            ${project.basedir}/security.properties:/run/secrets/org.opendatakit.aggregate.security.properties
+                                            ${project.basedir}/resources/security.properties:/run/secrets/org.opendatakit.aggregate.security.properties
                                         </volume>
                                         <volume>
-                                            ${project.basedir}/jdbc.properties:/run/secrets/org.opendatakit.aggregate.jdbc.properties
+                                            ${project.basedir}/resources/jdbc.properties:/run/secrets/org.opendatakit.aggregate.jdbc.properties
+                                        </volume>
+                                        <volume>
+                                            ${project.basedir}/resources/logging.properties:/run/secrets/org.opendatakit.aggregate.logging.properties
                                         </volume>
                                     </bind>
                                 </volumes>
@@ -218,7 +234,7 @@
             <type>pom</type>
         </dependency>
     </dependencies>
-    <reporting>
+   <!-- <reporting>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -227,5 +243,5 @@
                 <inherited>true</inherited>
             </plugin>
         </plugins>
-    </reporting>
+    </reporting> -->
 </project>

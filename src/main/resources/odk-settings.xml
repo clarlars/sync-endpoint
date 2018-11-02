@@ -7,16 +7,16 @@
 
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="ignoreResourceNotFound" value="true"/>
+		<property name="ignoreResourceNotFound" value="false"/>
 		<property name="locations">
 			<list>
 				<!-- Supply defaults with jar, override with Docker configs/secrets -->
-				<value>classpath:jdbc.properties</value>
-				<value>classpath:security.properties</value>
-				<value>classpath:logging.properties</value>
-				<value>file:/run/secrets/org.opendatakit.aggregate.jdbc.properties</value>
+				<value>file:/jdbc.properties</value>
+				<value>file:/security.properties</value>
+				<value>file:/logging.properties</value>
+			<!--	<value>file:/run/secrets/org.opendatakit.aggregate.jdbc.properties</value>
 				<value>file:/run/secrets/org.opendatakit.aggregate.security.properties</value>
-				<value>file:/org.opendatakit.aggregate.logging.properties</value>
+				<value>file:/run/secrets/org.opendatakit.aggregate.logging.properties</value> -->
 			</list>
 		</property>
 	</bean>

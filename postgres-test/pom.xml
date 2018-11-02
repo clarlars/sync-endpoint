@@ -133,6 +133,10 @@
                                     <port>8888:8888</port>
                                 </ports>
 
+                                <network>
+                                    <mode>host</mode>
+                                </network>
+
                                 <wait>
                                     <time>10000</time>
                                 </wait>

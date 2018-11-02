@@ -74,7 +74,6 @@ public class ContextFactory {
       // for now, only store the servlet context and the serverUrl
       this.ctxt = ctxt;
       String path = ctxt.getContextPath();
-      System.out.println("CLARICE!!!! path: " + path);
       this.datastore = (Datastore) getBean(BeanDefs.DATASTORE_BEAN);
       this.userService = (UserService) getBean(BeanDefs.USER_BEAN);
 

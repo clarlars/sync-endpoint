@@ -118,6 +118,41 @@
                                 </ports>
                             </run>
                         </image>
+                        <image>
+                            <name>odk/sync-endpoint</name>
+                            <alias>sync</alias>
+
+                            <run>
+                                <env>
+                                    <SPRING_PROFILES_ACTIVE>postgres</SPRING_PROFILES_ACTIVE>
+                                </env>
+
+                                <ports>
+                                    <port>8443:8443</port>
+                                    <port>8080:8080</port>
+                                    <port>8888:8888</port>
+                                </ports>
+
+                                <wait>
+                                    <time>10000</time>
+                                </wait>
+
+                                <volumes>
+                                    <bind>
+                                        <volume>
+                                            ${project.basedir}/security.properties:/run/secrets/org.opendatakit.aggregate.security.properties
+                                        </volume>
+                                        <volume>
+                                            ${project.basedir}/jdbc.properties:/run/secrets/org.opendatakit.aggregate.jdbc.properties
+                                        </volume>
+                                    </bind>
+                                </volumes>
+                                <dependsOn>
+                                    <container>db</container>
+                                    <container>ldap-service</container>
+                                </dependsOn>
+                            </run>
+                        </image>
                     </images>
                 </configuration>
             </plugin>
@@ -155,6 +190,9 @@
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven.failsafe.plugin.version}</version>
+                <configuration>
+                    <testSourceDirectory>${toplevel.directory}/src/it/java</testSourceDirectory>
+                </configuration>
                 <executions>
                     <execution>
                         <id>integration-test</id>

@@ -133,7 +133,7 @@
                                 <!--</dependsOn>-->
                             </run>
 
-                            <build>
+                            <!--<build>-->
                                 <!--<assembly>-->
                                     <!--<inline>-->
                                         <!--<dependencySets>-->
@@ -147,7 +147,7 @@
                                         <!--</dependencySets>-->
                                     <!--</inline>-->
                                 <!--</assembly>-->
-                            </build>
+                            <!--</build>-->
                         </image>
                     </images>
                 </configuration>

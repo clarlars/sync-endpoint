@@ -12,3 +12,4 @@ RUN chmod +x /tmp/init.sh && \
 EXPOSE 8443
 ENTRYPOINT ["/tmp/init.sh"]
 CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
+CMD [ "sleep", "360" ]

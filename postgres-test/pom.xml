@@ -89,7 +89,7 @@
                 <configuration>
                     <images>
                         <image>
-                            <name>odk/db</name>
+                            <name>odk/db-${project.name}</name>
                             <alias>db</alias>
 
                             <build>
@@ -128,7 +128,7 @@
                             </run>
                         </image>
                         <image>
-                            <name>odk/openldap</name>
+                            <name>odk/openldap-${project.name}</name>
                             <alias>ldap-service</alias>
 
                             <build>

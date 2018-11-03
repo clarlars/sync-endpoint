@@ -25,6 +25,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import javax.servlet.ServletContext;
+import java.io.File;
 
 @Ignore("not a test")
 public class TestContextFactory {
@@ -36,15 +37,15 @@ public class TestContextFactory {
 	 * Singleton of the application context
 	 */
 	private static final String APP_CONTEXT_PATH = "target/odk-resources/odk-settings.xml";
-	private static final ApplicationContext applicationContext = new FileSystemXmlApplicationContext(APP_CONTEXT_PATH);
+	//private static final ApplicationContext applicationContext = new FileSystemXmlApplicationContext(APP_CONTEXT_PATH);
 
 	@Ignore("not a test")
 	public static final class CallingContextImpl implements CallingContext {
 		final String serverUrl;
 		final String secureServerUrl;
 		final String webApplicationBase;
-		final Datastore datastore;
-		final UserService userService;
+		final Datastore datastore = null;
+		final UserService userService = null;
 		boolean asDaemon = true; // otherwise there isn't a current user...
 
 		CallingContextImpl() {
@@ -58,13 +59,19 @@ public class TestContextFactory {
 			String secureport = System.getProperty("test.server.secure.port","8443");
 			serverUrl = "http://" + hostname + ":" + port + webApplicationBase;
 			secureServerUrl = "https://" + hostname + ":" + secureport + webApplicationBase;
-			datastore = (Datastore) applicationContext.getBean(DATASTORE_BEAN);
-			userService = (UserService) applicationContext.getBean(USER_BEAN);
+
+//			datastore = (Datastore) applicationContext.getBean(DATASTORE_BEAN);
+//			userService = (UserService) applicationContext.getBean(USER_BEAN);
+
+			File file = new File(APP_CONTEXT_PATH);
+			String path = file.getAbsolutePath();
+			System.out.println("CLARICE!!! path is " + path);
 		}
 
 		@Override
 		public Object getBean(String beanName) {
-			return applicationContext.getBean(beanName);
+			//return applicationContext.getBean(beanName);
+			return null;
 		}
 
 		@Override

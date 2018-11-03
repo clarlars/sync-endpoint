@@ -43,9 +43,16 @@ public abstract class AbstractServiceTest {
 
   @BeforeClass
   public static void setupProxy() throws Throwable {
-    String hostname = System.getProperty("test.server.hostname");
-    String username = System.getProperty("test.server.username");
-    String password = System.getProperty("test.server.password");
+    //    test.server.hostname = localhost
+//    test.server.port = 8888
+//    test.forms.dir = ../src/it/testfiles/forms
+//    test.submissions.dir = ../src/it/testfiles/submissions
+//    test.sync.dir = ../src/it/testfiles/sync
+//    test.superusername = aggregate
+//    test.superuserpassword = aggregate
+    String hostname = System.getProperty("test.server.hostname", "localhost");
+    String username = System.getProperty("test.server.username", "");
+    String password = System.getProperty("test.server.password", "");
 
     try {
       proxy = new BrowserMobProxyServer();
@@ -77,9 +84,17 @@ public abstract class AbstractServiceTest {
   
   // call this from any Before action in derived class
   public void abstractServiceSetUp() throws Exception, Throwable {
-    String hostname = System.getProperty("test.server.hostname");
-    baseUrl = System.getProperty("test.server.baseUrl");
-    String port = System.getProperty("test.server.port");
+//    test.server.hostname = localhost
+//    test.server.port = 8888
+//    test.forms.dir = ../src/it/testfiles/forms
+//    test.submissions.dir = ../src/it/testfiles/submissions
+//    test.sync.dir = ../src/it/testfiles/sync
+//    test.superusername = aggregate
+//    test.superuserpassword = aggregate
+
+    String hostname = System.getProperty("test.server.hostname", "localhost");
+    baseUrl = System.getProperty("test.server.baseUrl", "");
+    String port = System.getProperty("test.server.port", "8888");
 
     this.baseUri = URI.create("http://" + hostname + ":" + port + baseUrl + "odktables/" + appId + "/");
 

@@ -65,7 +65,7 @@ public class TestContextFactory {
 
 			File file = new File(APP_CONTEXT_PATH);
 			String path = file.getAbsolutePath();
-			System.out.println("CLARICE!!! path is " + path);
+			System.err.println("CLARICE!!! path is " + path);
 		}
 
 		@Override
